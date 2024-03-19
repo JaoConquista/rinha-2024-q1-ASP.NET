@@ -7,9 +7,9 @@ namespace rinha_dotnet6.Models
 {
     public class Extrato
     {
-        public int Total { 
+        public int Saldo { 
             get{
-                return Total;
+                return Saldo;
                 } 
             set{
                 if(value < Limite){

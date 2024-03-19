@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/joao/Documents/github/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj": {}
+    "/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj": {}
   },
   "projects": {
-    "/home/joao/Documents/github/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj": {
+    "/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/joao/Documents/github/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj",
+        "projectUniqueName": "/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj",
         "projectName": "rinha-dotnet6",
-        "projectPath": "/home/joao/Documents/github/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj",
-        "packagesPath": "/home/joao/.nuget/packages/",
-        "outputPath": "/home/joao/Documents/github/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/obj/",
+        "projectPath": "/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/rinha-dotnet6.csproj",
+        "packagesPath": "/home/joaoconquista/.nuget/packages/",
+        "outputPath": "/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/joao/.nuget/NuGet/NuGet.Config"
+          "/home/joaoconquista/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -47,6 +47,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.5, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.2, )"
             }
           },
           "imports": [

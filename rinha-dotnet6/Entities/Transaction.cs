@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace rinha_dotnet6.Models
+namespace rinha_dotnet6.Entities
 {
     public enum TipoTransacao
     {
@@ -13,11 +13,12 @@ namespace rinha_dotnet6.Models
     }
     public class Transaction
     {
+        public int Id { get; set; }
         public String Valor { get; set; }
         public TipoTransacao Tipo { get; set; }
         
         [StringLength(10, ErrorMessage ="A descrição deve ter no máximo 10 caracteres")]
         public String Descricao { get; set; }
-        public DateTime ? Data { get; set; }
+        public DateTime Data { get; set; }
     }
 }
