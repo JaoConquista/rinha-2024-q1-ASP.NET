@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using rinha_dotnet6.Context;
 using rinha_dotnet6.Entities;
+using rinha_dotnet6.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +11,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
-Console.WriteLine("Port : " + app.Configuration["port"]);
-
 app.MapGet("/", () => "Hello World!");
 
-app.MapPost("/clientes/{id}/transacoes", () => {
-    return "post method";
+app.MapPost("/clientes/{id}/transacoes", (int id, AppDbContext context) => {
+    var transaction = new TransactionService(context).MakeTransaction(id);
+    return Results.Ok(transaction);
 });
 
 app.Run();

@@ -39,6 +39,38 @@ namespace rinha_dotnet6.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Limite = 100000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Limite = 80000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Limite = 1000000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Limite = 10000000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Limite = 500000,
+                            SaldoInicial = 0
+                        });
                 });
 
             modelBuilder.Entity("rinha_dotnet6.Entities.Transaction", b =>
