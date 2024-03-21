@@ -19,17 +19,40 @@ namespace rinha_dotnet6.Service
         {
             _contextClient = contextClient;
         }
-        
-        public Cliente MakeTransaction(int Id)
+
+        public Cliente MakeTransaction(int Id, Transaction transaction)
         {
 
-            var client = new ClientService(_contextClient).GetCliente(Id) 
-            ?? throw new Exception($"No client found with id {Id}");
+            var client = new ClientService(_contextClient).GetCliente(Id);
+
+            if (transaction.Tipo == "d")
+            {
+                if( transaction.Valor <= client.Limite || transaction.Valor <= client.SaldoInicial)
+                {
+                    client.SaldoInicial -= transaction.Valor;
+
+                     new ClientService(_contextClient).UpdateClient(client);
+                }
+
+                throw new Exception("Transação não permitida");
+                
+            }
+            else if (transaction.Tipo == "c")
+            {
+                client.SaldoInicial += transaction.Valor;
+
+                new ClientService(_contextClient).UpdateClient(client);
+            }
+            else
+            {
+                throw new Exception("Transação não permitida");
+            }
 
             return client;
 
         }
 
-        
+
+
     }
 }

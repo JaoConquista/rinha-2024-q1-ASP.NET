@@ -18,12 +18,19 @@ namespace rinha_dotnet6.Service
 
         public Cliente GetCliente(int Id)
         {
-             if (_context == null)
-    {
-        throw new Exception("_context is null");
-    }
-            var client = _context.Clientes.FirstOrDefault(c => c.Id == Id) 
+            if (_context == null)
+            {
+                throw new Exception("_context is null");
+            }
+            var client = _context.Clientes.FirstOrDefault(c => c.Id == Id)
             ?? throw new Exception($"No client found with id {Id}");
+            return client;
+        }
+
+        public Cliente UpdateClient(Cliente client)
+        {
+            _context.Update(client);
+            _context.SaveChanges();
             return client;
         }
     }

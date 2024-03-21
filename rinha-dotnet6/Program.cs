@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using rinha_dotnet6.Context;
 using rinha_dotnet6.Entities;
@@ -11,11 +12,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+
 app.MapGet("/", () => "Hello World!");
 
-app.MapPost("/clientes/{id}/transacoes", (int id, AppDbContext context) => {
-    var transaction = new TransactionService(context).MakeTransaction(id);
-    return Results.Ok(transaction);
+app.MapPost("/clientes/{id}/transacoes", (int id, AppDbContext context, Transaction transaction) => {
+
+    var makeTransaction = new TransactionService(context).MakeTransaction(id, transaction);
+
+    return Results.Ok(makeTransaction);
 });
 
 app.Run();
