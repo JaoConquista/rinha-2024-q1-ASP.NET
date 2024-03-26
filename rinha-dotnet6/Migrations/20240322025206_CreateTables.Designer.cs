@@ -12,8 +12,8 @@ using rinha_dotnet6.Context;
 namespace rinha_dotnet6.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240319211314_createTransactonTable")]
-    partial class createTransactonTable
+    [Migration("20240322025206_CreateTables")]
+    partial class CreateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,38 @@ namespace rinha_dotnet6.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Limite = 100000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Limite = 80000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Limite = 1000000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Limite = 10000000,
+                            SaldoInicial = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Limite = 500000,
+                            SaldoInicial = 0
+                        });
                 });
 
             modelBuilder.Entity("rinha_dotnet6.Entities.Transaction", b =>
@@ -51,7 +83,7 @@ namespace rinha_dotnet6.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime?>("Data")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Descricao")
@@ -59,12 +91,12 @@ namespace rinha_dotnet6.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
 
-                    b.Property<int>("Tipo")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Valor")
+                    b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Valor")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
