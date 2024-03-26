@@ -81,7 +81,7 @@ namespace rinha_dotnet6.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime?>("Data")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Descricao")
@@ -89,12 +89,12 @@ namespace rinha_dotnet6.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
 
-                    b.Property<int>("Tipo")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Valor")
+                    b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Valor")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

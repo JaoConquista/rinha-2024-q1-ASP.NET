@@ -16,6 +16,19 @@ namespace rinha_dotnet6.Service
             _context = context;
         }
 
+
+        public List<Cliente> GetClients()
+        {
+            var client = _context.Clientes.ToList();
+
+            if(client == null)
+            {
+                throw new Exception("Cliente não encontrado");
+            }
+
+            return client;
+        }
+
         public Cliente GetCliente(int Id)
         {
             if (_context == null)

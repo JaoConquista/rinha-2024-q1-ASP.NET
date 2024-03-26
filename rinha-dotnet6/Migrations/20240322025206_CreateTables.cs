@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace rinha_dotnet6.Migrations
 {
-    public partial class createTransactonTable : Migration
+    public partial class CreateTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,10 +30,10 @@ namespace rinha_dotnet6.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Valor = table.Column<string>(type: "text", nullable: false),
-                    Tipo = table.Column<int>(type: "integer", nullable: false),
+                    Valor = table.Column<int>(type: "integer", nullable: false),
+                    Tipo = table.Column<string>(type: "text", nullable: false),
                     Descricao = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
-                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {

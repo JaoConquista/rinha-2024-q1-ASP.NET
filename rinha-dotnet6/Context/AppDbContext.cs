@@ -11,7 +11,7 @@ namespace rinha_dotnet6.Context
         }
 
         public DbSet<Cliente> Clientes { get; set; }
-        DbSet<Transaction> Transacoes { get; set; }
+        public DbSet<Transaction> Transacoes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

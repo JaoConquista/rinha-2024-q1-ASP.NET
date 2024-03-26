@@ -12,14 +12,26 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+var transaction = new Transaction();
 
-app.MapGet("/", () => "Hello World!");
+
+
+app.MapGet("/", (AppDbContext context) => {
+    var getClients = new ClientService(context).GetClients();
+    return Results.Ok(getClients);
+});
 
 app.MapPost("/clientes/{id}/transacoes", (int id, AppDbContext context, Transaction transaction) => {
 
     var makeTransaction = new TransactionService(context).MakeTransaction(id, transaction);
 
-    return Results.Ok(makeTransaction);
+    var client = new Dictionary<string, object>
+    {
+        ["limite"] = makeTransaction.Limite,
+        ["saldo"] = makeTransaction.SaldoInicial
+    };
+
+    return Results.Ok(client);
 });
 
 app.Run();

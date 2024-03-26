@@ -21,6 +21,8 @@ namespace rinha_dotnet6.Entities
         [JsonIgnore]
         public DateTime ? Data { get; set; }
 
+        //todo: adicionar client/-id como foreign key
+
 
     }
 }
