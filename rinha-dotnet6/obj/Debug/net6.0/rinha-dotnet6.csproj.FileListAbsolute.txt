@@ -28,3 +28,5 @@
 /home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/obj/Debug/net6.0/rinha-dotnet6.genruntimeconfig.cache
 /home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/bin/Debug/net6.0/Npgsql.dll
 /home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/bin/Debug/net6.0/DotNetEnv.dll
+/home/joaoconquista/git/my-projects/backend/rinha-2024-q1-ASP.NET/rinha-dotnet6/bin/Debug/net6.0/Sprache.dll

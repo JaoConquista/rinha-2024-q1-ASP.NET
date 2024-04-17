@@ -33,7 +33,7 @@ namespace rinha_dotnet6.Migrations
                     b.Property<int>("Limite")
                         .HasColumnType("integer");
 
-                    b.Property<int>("SaldoInicial")
+                    b.Property<int>("Saldo")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -45,31 +45,31 @@ namespace rinha_dotnet6.Migrations
                         {
                             Id = 1,
                             Limite = 100000,
-                            SaldoInicial = 0
+                            Saldo = 0
                         },
                         new
                         {
                             Id = 2,
                             Limite = 80000,
-                            SaldoInicial = 0
+                            Saldo = 0
                         },
                         new
                         {
                             Id = 3,
                             Limite = 1000000,
-                            SaldoInicial = 0
+                            Saldo = 0
                         },
                         new
                         {
                             Id = 4,
                             Limite = 10000000,
-                            SaldoInicial = 0
+                            Saldo = 0
                         },
                         new
                         {
                             Id = 5,
                             Limite = 500000,
-                            SaldoInicial = 0
+                            Saldo = 0
                         });
                 });
 
@@ -80,6 +80,9 @@ namespace rinha_dotnet6.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("Client_Id")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Data")
                         .HasColumnType("timestamp with time zone");
@@ -98,7 +101,18 @@ namespace rinha_dotnet6.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Client_Id");
+
                     b.ToTable("Transacoes");
+                });
+
+            modelBuilder.Entity("rinha_dotnet6.Entities.Transaction", b =>
+                {
+                    b.HasOne("rinha_dotnet6.Entities.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("Client_Id");
+
+                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

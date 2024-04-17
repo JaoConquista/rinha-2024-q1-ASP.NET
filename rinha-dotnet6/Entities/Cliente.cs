@@ -11,6 +11,7 @@ namespace rinha_dotnet6.Entities
     {
         public int Id { get; set; }
         public int Limite { get; set; }
-        public int SaldoInicial { get; set; }
+        public int Saldo { get; set; }
+
     }
 }

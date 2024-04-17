@@ -12,6 +12,7 @@ namespace rinha_dotnet6.Entities
     {
         [JsonIgnore] //não é a melhor abordagem, mas para fins de teste, está ok
         public int Id { get; set; }
+        public int Client_Id { get; set; }
         public int Valor { get; set; }
         public string Tipo { get; set; }
         
@@ -20,6 +21,7 @@ namespace rinha_dotnet6.Entities
         
         [JsonIgnore]
         public DateTime ? Data { get; set; }
+        public Cliente Cliente { get; set; }
 
         //todo: adicionar client/-id como foreign key
 
