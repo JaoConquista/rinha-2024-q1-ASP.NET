@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace rinha_dotnet6.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class CreateTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace rinha_dotnet6.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Limite = table.Column<int>(type: "integer", nullable: false),
-                    SaldoInicial = table.Column<int>(type: "integer", nullable: false)
+                    Saldo = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,6 +30,7 @@ namespace rinha_dotnet6.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Client_Id = table.Column<int>(type: "integer", nullable: true),
                     Valor = table.Column<int>(type: "integer", nullable: false),
                     Tipo = table.Column<string>(type: "text", nullable: false),
                     Descricao = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
@@ -38,11 +39,16 @@ namespace rinha_dotnet6.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transacoes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transacoes_Clientes_Client_Id",
+                        column: x => x.Client_Id,
+                        principalTable: "Clientes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
                 table: "Clientes",
-                columns: new[] { "Id", "Limite", "SaldoInicial" },
+                columns: new[] { "Id", "Limite", "Saldo" },
                 values: new object[,]
                 {
                     { 1, 100000, 0 },
@@ -51,15 +57,20 @@ namespace rinha_dotnet6.Migrations
                     { 4, 10000000, 0 },
                     { 5, 500000, 0 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transacoes_Client_Id",
+                table: "Transacoes",
+                column: "Client_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Transacoes");
 
             migrationBuilder.DropTable(
-                name: "Transacoes");
+                name: "Clientes");
         }
     }
 }

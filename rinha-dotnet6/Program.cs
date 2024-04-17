@@ -4,7 +4,14 @@ using rinha_dotnet6.Context;
 using rinha_dotnet6.Entities;
 using rinha_dotnet6.Service;
 
+DotNetEnv.Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
+
+Environment.SetEnvironmentVariable("DEFAULT_CONNECTION", DotNetEnv.Env.GetString("DEFAULT_CONNECTION"));
+
+var connectionString = DotNetEnv.Env.GetString("DEFAULT_CONNECTION");
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -21,6 +28,11 @@ app.MapGet("/", (AppDbContext context) => {
     return Results.Ok(getClients);
 });
 
+app.MapGet("/transactions", (AppDbContext context) => {
+    var getTransactions = new TransactionService(context).GetTransactions();
+    return Results.Ok(getTransactions);
+});
+
 app.MapPost("/clientes/{id}/transacoes", (int id, AppDbContext context, Transaction transaction) => {
 
     var makeTransaction = new TransactionService(context).MakeTransaction(id, transaction);
@@ -28,7 +40,7 @@ app.MapPost("/clientes/{id}/transacoes", (int id, AppDbContext context, Transact
     var client = new Dictionary<string, object>
     {
         ["limite"] = makeTransaction.Limite,
-        ["saldo"] = makeTransaction.SaldoInicial
+        ["saldo"] = makeTransaction.Saldo
     };
 
     return Results.Ok(client);
